@@ -12,14 +12,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>HomePage</title>
 </head>
 <body>
 
-<%-- 		<jsp:setProperty name="user" property="*"/> --%>
-<%-- 	</jsp:useBean> --%>
-	
-<%-- 	<%=user.getUsername()  + " " + user.getPassword() %> --%>
+
 	<%  
 		List<User> users = (List<User>) request.getSession().getAttribute("users");
  	%>

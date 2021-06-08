@@ -41,20 +41,15 @@ public class IndexServlet extends HttpServlet {
 
 		   List<Contact> contactExist = ContactDao.findAll();
 		   
-		   for (Contact c : contactExist) {
+		   for (Contact c: contactExist) {
 			   users.add(new User().setUsername(c.getName()).setPassword(c.getSurname()));
 		   }
 		 
 		   request.getSession().setAttribute("users", users);
-		   
-	    	/*  users.add(new User().setPassword("pass01").setUsername("user01"));
-		      users.add(new User().setPassword("pass02").setUsername("user02"));
-		      users.add(new User().setPassword("pass03").setUsername("user03"));
-	          users.add(new User().setPassword("pass04").setUsername("user04")); */
+		  
+		   request.getRequestDispatcher("home.jsp").forward(request, response);
 		
-		//request.setAttribute("Contacts", users);
-		
-		request.getRequestDispatcher("home.jsp").forward(request, response);
+
 	}
 
 	/**

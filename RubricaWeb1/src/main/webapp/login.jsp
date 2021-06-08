@@ -7,7 +7,7 @@
 <title>Login Page</title>
 </head>
 <body>
-	<form method="post" action="/RubricaWeb/LoginServlet">
+ 	<form action="${pageContext.request.contextPath}/login" method="POST">   <%--action="/RubricaWeb/LoginServlet"> --%>
 		<p>
 			Username: <input type="text" name="username">
 		</p>

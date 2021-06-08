@@ -16,7 +16,7 @@ import dto.User;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/LoginServlet")
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,18 +25,52 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
+	
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+  
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		User user = new User()
+	/*	User user = new User()
 				.setPassword(request.getParameter("password"))
-				.setUsername(request.getParameter("username"));
+				.setUsername(request.getParameter("username")); */
 		
+    	final String username = "Anna";
+	    final String password = "anna";
 		
+		String paramUsername = request.getParameter("username");
+		String paramPassword = request.getParameter("password");
+
+		if(username.equals(paramUsername) && password.equals(paramPassword)) {
+			//se l'autenticazione va a buon fine
+			
+			HttpSession oldSession = request.getSession(false);
+			if(oldSession != null) {
+				oldSession.invalidate();
+			}
+			
+			HttpSession currentSession = request.getSession();
+			currentSession.setAttribute("username", paramUsername);
+			
+			response.sendRedirect("success.jsp");
+			
+		}
+		else {
+			response.sendRedirect("login.jsp");
+			
+		}
+    
+    
+    
+    }
+	
+	
+	
+	/*
 		
 		if( user.getUsername() != null && user.getUsername().equals("annamaria") ) {
 			HttpSession session = request.getSession();
@@ -50,12 +84,13 @@ public class LoginServlet extends HttpServlet {
 		} 
 		
 		request.getRequestDispatcher("home.jsp").forward(request, response);
-	}
+	}*/
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 

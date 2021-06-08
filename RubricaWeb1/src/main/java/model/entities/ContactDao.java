@@ -99,6 +99,8 @@ public class ContactDao {
 		}
 		return contacts;
 	}
+
+
 	
 	public static List<Contact> findAllNamedQuery() {
 		EntityManager em = DBUtil.getEntityManager(DBUtil.RUBRICA_WEB_PU);
